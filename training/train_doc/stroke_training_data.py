@@ -1,13 +1,5 @@
-#!/usr/bin/env python2
-# -*- coding: utf-8 -*-
-"""
-Created on Mon May 28 15:09:25 2018
-
-@author: justine
-"""
 
 import network as nw
-#import scikit_learn as sl
 
 question= [["what is a stroke?"],["what are the types of strokes present?"],["what are the signs and symptoms of strokes?"],["when dose the sighs and symptoms of stroke often appear?"],["what if symptoms of stroke last less than one or more hour?"],["to what a hemorrhagic stroke may also associated with?"],["can the symptoms of strokes be permanent?"],["what are the long-term complications of stroke?"]
 ,["what is the risk factor for stroke?"],["an ischemic stroke is typically caused by what?"],["a hemorrhagic stroke is caused by what?"],["bleeding during stroke occur due to what?"],["the stroke diagnosis is typically based on what?"],["what are the other tests for stroke?"],["what causes the similar symptoms to stroke?"],["how to prevent stroke?"],["does a stroke require emergency care?"],["what if an ischemic stroke is detected?"]
@@ -39,10 +31,6 @@ selected_sentences_list= [["a stroke is a medical condition in which poor blood 
 for i in range (0, len(question)):
     
     array=nw.question_answer_nurel_network(question[i],selected_sentences_list[i])
-#answer= nw.question_answer_nurel_network(question,selected_sentences_list)
-#print(answer)
-print("array= " +str(array))
 
-#net=sl.learn(array)
-#sl.save_perceptron(net)
+
 

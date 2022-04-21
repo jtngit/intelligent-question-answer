@@ -2,7 +2,7 @@ import first as k
 import question as que
 
 
-doc_path='/doc'
+doc_path='/Users/justinejose/my_rasa/git_up/intelligent-question-answer/doc'
 k.runstart(doc_path)
 k.doc_clean_and_tfidf(doc_path)
 

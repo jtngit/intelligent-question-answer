@@ -1,13 +1,5 @@
-#!/usr/bin/env python2
-# -*- coding: utf-8 -*-
-"""
-Created on Mon May 28 15:09:25 2018
-
-@author: justine
-"""
 
 import network as nw
-#import scikit_learn as sl
 
 question= [["what is anthrax?"],["how anthrax is occurred?"],["when symptoms of anthrax begins in?"],["what are the symptoms of anthrax?"],["how anthrax is spread?"],["what are the risk factors of anthrax?"],["how could anthrax diagnosis be confirmed?"],["anthrax vaccination is recommended for whome?"]
 ,["how anthrax infection can be prevented?"],["what if anthrax infection occurred?"],["which drug is recommended for those with widespread infection of anthrax?"],["where is this anthrax disease commonly occurred?"],["how many anthrax infection cases occurs globally?"],["what is the risk of skin anthrax without treatment?"]
@@ -33,10 +25,4 @@ selected_sentences_list= [["anthrax is an infection caused by the bacterium baci
 for i in range (0, len(question)):
     
     array=nw.question_answer_nurel_network(question[i],selected_sentences_list[i])
-#answer= nw.question_answer_nurel_network(question,selected_sentences_list)
-#print(answer)
-print("array= " +str(array))
-
-#net=sl.learn(array)
-#sl.save_perceptron(net)
 

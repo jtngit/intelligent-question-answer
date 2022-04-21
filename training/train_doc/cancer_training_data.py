@@ -1,13 +1,5 @@
-#!/usr/bin/env python2
-# -*- coding: utf-8 -*-
-"""
-Created on Mon May 28 15:09:25 2018
-
-@author: justine
-"""
 
 import network as nw
-#import scikit_learn as sl
 
 question= [["what is cancer?"],["what are the possible signs and symptoms of cancer?"],["how many types of cancers can affect human?"],["what causes to cancer deaths mainly?"],["what are the other causes of cancer?"],["what are the other factors of cancer?"],["what about cancer in the developing countries?"]
 ,["does genetic issues cause cancer? "],["how can cancer be detected?"],["how to prevent cancer?"],["how cancer is often treated?"],["what are the important part of cancer care?"],["what about palliative cancer care?"],["what about the chances of survival of cancer?"]
@@ -40,10 +32,3 @@ selected_sentences_list= [["cancer is a group of diseases involving abnormal cel
 for i in range (0, len(question)):
     
     array=nw.question_answer_nurel_network(question[i],selected_sentences_list[i])
-#answer= nw.question_answer_nurel_network(question,selected_sentences_list)
-#print(answer)
-print("array= " +str(array))
-
-#net=sl.learn(array)
-#sl.save_perceptron(net)
-

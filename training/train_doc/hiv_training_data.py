@@ -1,13 +1,5 @@
-#!/usr/bin/env python2
-# -*- coding: utf-8 -*-
-"""
-Created on Mon May 28 15:09:25 2018
-
-@author: justine
-"""
 
 import network as nw
-#import scikit_learn as sl
 
 question= [["what is HIV?"],["what is HIV aids?"],["what is the average survival time without treatment if affected by HIV?"],["how hiv transmitted from one person to another?"],["how hiv transmission on non-sexually?"],["how hiv transmit from mother to child?"],["how hiv present in body fluids in the form of?"],["where do hiv viruses infections?"],["how hiv infections leads to?"],["how HIV aids develop inside the body?"]]
 selected_sentences_list= [["the human immunodeficiency virus (hiv) is a lentivirus (a subgroup of retrovirus) that causes hiv infection and over time acquired immunodeficiency syndrome (aids).","without treatment, average survival time after infection with hiv is estimated to be 9 to 11 years, depending on the hiv subtype."]
@@ -25,10 +17,3 @@ selected_sentences_list= [["the human immunodeficiency virus (hiv) is a lentivir
 for i in range (0, len(question)):
     
     array=nw.question_answer_nurel_network(question[i],selected_sentences_list[i])
-#answer= nw.question_answer_nurel_network(question,selected_sentences_list)
-#print(answer)
-print("array= " +str(array))
-
-#net=sl.learn(array)
-#sl.save_perceptron(net)
-

@@ -1,20 +1,13 @@
-#!/usr/bin/env python2
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Jun 18 09:43:29 2018
 
-@author: justine
-"""
-#import csv
 import pickle
 import numpy as np
-#import matplotlib.pyplot as plt
-#import sklearn.linear_model.perceptron as p
-from sklearn.linear_model import perceptron
+#from sklearn.linear_model import perceptron
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import StandardScaler
+from sklearn.svm import SVC
+
+
  
-# Needed to show the plots inline
-#%matplotlib inline
-# Data
 typeq = []
 diff = []
 ratio = []
@@ -32,51 +25,35 @@ for line in f:
     crt_wrong.append( int( cells[ 4 ] ) )
 f.close()
 
-
 z.append(typeq) 
 z.append(commen)
 z.append(diff)
 z.append(ratio) 
-#z.append(ratio)  
-print(f"z= {str(z)}")
 
 d90= np.transpose(z)
-print("d90= "+str(d90))
+#print("d90= "+str(d90))
 aa=np.array(d90).tolist()     
-                
-print("input"+str(aa))
+
 d = np.array(aa)
-#j = np.transpose(input)
-print("")
-#print(j)
+print("input"+str(d))
  
 # Labels
 t = np.array(crt_wrong)
 print("answer: "+str(t))
 
 
-#print("________________________________")
-print("d"+str(d))
-print("________________________________")
+# net = perceptron.Perceptron(max_iter=100, verbose=0, random_state=None, fit_intercept=True, eta0=0.002)
 
+clf = make_pipeline(StandardScaler(), SVC())
 
-net = perceptron.Perceptron(max_iter=100, verbose=0, random_state=None, fit_intercept=True, eta0=0.002)
+# net.fit(d,t)
+clf.fit(d, t)
 
-net.fit(d,t)
-print("$$$$$$$$$$$$$$$$$$$$")
-########$$$$$$$$$$$$$$$$$$$$$$$$$$#####################################
+print("Training successful !!!!")
+print(clf.score(d,t))
 
+####### save the trained network ################# 
 
-   
 pickle_variable = open('trained.network', 'wb')
-
-pickle.dump(net, pickle_variable)
-
+pickle.dump(clf, pickle_variable)
 pickle_variable.close()
-
-############################@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-print("___________________________________________________________")
-   
-    
-    
-   

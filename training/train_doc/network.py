@@ -1,14 +1,4 @@
-#!/usr/bin/env python2
-# -*- coding: utf-8 -*-
-"""
-Created on Mon May 28 13:48:27 2018
 
-@author: justine
-"""
-#import trained_network as sl
-#import scikit_learn as sl
-#from nltk.tokenize import sent_tokenize 
-#import pickle   
 from nltk.tokenize import word_tokenize
     
 from nltk.stem import PorterStemmer 
@@ -27,8 +17,6 @@ def mining(tx):
     #print(specha)
         
     words=word_tokenize(specha)
-    #print(len(words))
-    #print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
             
     #print("!!!!!!!!!!!!!! stop word removal !!!!!!!!!!!!!!!!!!")  
     #print("     ")      
@@ -58,44 +46,18 @@ def mining_not_avoid_stopwords(txt):
     #print(specha)
         
     c=word_tokenize(specha)
-    #print(len(words))
-    #print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-            
-    #print("!!!!!!!!!!!!!! stop word removal !!!!!!!!!!!!!!!!!!")  
-    #print("     ")      
-    #filtered_sentence = []
-                             
-                
-    #for w in words:
-        #if w not in stop_words:
-         #   filtered_sentence.append(w)
-                            
-    #print(filtered_sentence)
-    #print("     ") 
                                 
     #print("@@@@@@@@@@@@@@@@@@@@@ stemming @@@@@@@@@@@@@@@@@@@@@")
     #print("  ")
     ste=[]                   
     for w in c:
         ste.append((ps.stem(w)))
-    #print(ste)
-            
-           # doc_no_word.append(len(ste))             
-            #print(matrix)
-            #for i in range (0,1):
-             #   matrix[i].append(0)
-           # print(matrix)
-    #print("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
-            
-            #print(matrix)
-             
-    #for word in ste:
-        #print(word)
+    
     return ste
 
 def type_of_question_word(b):
     count=0
-    print("@@@@@@@ question = "+str(b))
+    #print("@@@@@@@ question = "+str(b))
     question_words={'who':1,'where':2,'when':3,'whi':4,'what':5,'which':6,'how':7, 'whome':8, 'doe':9, 'there':10, 'can':11}
     #print(question_words)
     for i in b:
@@ -139,31 +101,23 @@ def ratio(question,answer):
     
             
 def question_answer_nurel_network(question,answers):
-    #pickle_variable = open('answers.list', 'wb')
-    #pickle.dump(answers, pickle_variable)
-    #pickle_variable.close()
-    
+  
     array= []    
     ques= question[0]  
     
     ans= answers
-    #print(ans)
-    print("")
-    print("")
-    print(ques)
-    print("")
-    #print(ans)
+  
     no_answ= len(ans)
     #print("no_answ= "+str(no_answ))
     for i in range(0,no_answ):
-        #print("____________________")
-        #print("question: "+str(ques))
+       
         m= ans[i]
-        print("")
+        #print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+        print(f"question={ques}")
         print("answer"+str(i)+": "+str(m))
-        print("$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+        #print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
         type_question_words= mining_not_avoid_stopwords(ques)
-        print("mining_not_avoid_stopwords: "+str(type_question_words))
+        #print("mining_not_avoid_stopwords: "+str(type_question_words))
         question_words=mining(ques)
         #print("mined question_words: "+str(question_words))
         answer_words= mining(m)
@@ -188,26 +142,27 @@ def question_answer_nurel_network(question,answers):
         words_ratio= ratio(question_words,answer_words)
         #print("words_ratio= "+str(words_ratio))
         question_array.append(words_ratio)
+
+        if (i<1):
+            question_array.append(1)
+        else:
+            question_array.append(0)
+
         
         #print(question_array)
         array.append(question_array)
-    print("array"+str(array))
+    #print("array"+str(array))
     ######################### sentences training inpuut saved to csv file #############
     for li in array:
-        #print(li)
-        #print("__________________________________")
+        print(li)
+        print("__________________________________")
         file= open("flow.csv","a")
         k=0
         while k<len(li):
-            
-            #print("value:"+str(li[k]))
-            #file.write(str(li[k])+",")
+
             file.write(str(li[k])+",")
             k=k+1
         file.writelines("\n")
     file.close
-    #print("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$4")
-    #sl.learn(array)
+
     return array
-    #transpose_question_array= np.transpose(array)
-    #print("transpose_question_array: "+str(transpose_question_array))

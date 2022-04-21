@@ -1,37 +1,27 @@
-#!/usr/bin/env python2
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Jun 27 16:18:52 2018
-
-@author: justine
-"""
 import csv
 import numpy as np
 import pickle
-#import csv
-'''import pandas as pd
-df = pd.read_csv("flow.csv", header=None, names=["type","commen","diff","ratio"])
-print(df.columns['commen'])'''
 
 typeq = []
 diff = []
 ratio = []
 commen = []
+crt_or_wrong = []
 dividing_values = []
 b=[]
-c=[]
+#c=[]
+g=[]
 z=[]
 
 
-f = open( 'flow.csv', 'rU' ) 
-print(str(f))
-print("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
+f = open( 'flow.csv', 'r' ) 
 for line in f:
     cells = line.split( "," )
     typeq.append( int( cells[ 0 ] ) ) 
     diff.append( int( cells[ 1 ] ) )
     ratio.append( int( cells[ 2 ] ) )
-    commen.append( float( cells[ 3 ] ) )    
+    commen.append( float( cells[ 3 ] ) )
+    crt_or_wrong.append(int( cells[ 4 ] ))
 f.close()
 
 
@@ -78,94 +68,62 @@ commen_val=commen_max-commen_min
 #print("commen_val= "+str(commen_val))
 dividing_values.append(commen_val)
 
-print("dividing_values"+str(dividing_values))
+#print("dividing_values"+str(dividing_values))
 
 pickle_variable = open('dividing_values.list', 'wb')
     
 pickle.dump(dividing_values, pickle_variable)
 pickle_variable.close()
 
-
-print("###########################################################")
-#print("z= "+str(z))
-#d = np.array(a)
-
-    
-    
-      
+#print(z)
 d90= np.transpose(z)
 #print("d90= "+str(d90))
 aa=np.array(d90).tolist()
-print(aa)
-print("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+#print(aa)
+#print("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+j=0
 for m in aa:
-    #b.append(m)
     #print("b"+str(b))
     roww= np.array(m)
     div_roww= np.array(dividing_values)
     divided_row= roww/div_roww
     #print("divided_row=  "+str(divided_row))
-    c.append(divided_row)
-    g= np.array(c).tolist()
-    #print(b)
-    #print("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
-    
-#a=[]
-#print("b= "+str(b))
-#print("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
-#print("c= "+str(c))
-#print("____________________________________________________")
-#print("g= "+str(g))
 
-"""for li in g:
-    
-    print(li)
-    
-    file= open("normalize.csv","a")
-    k=0
-    while k<len(li):
-        
-        print("value:"+str(li[k]))
-        #file.write(str(li[k])+",")
-        file.write(str(li[k])+",")
-        k=k+1
-    file.writelines("\n")
-    print("__________________________________")
-file.close"""
+    #c=[]
+    rows=[]
+    #c.append(np.array(divided_row).tolist())
+    #print(f"printing c = {c}")
 
-with open('bef_eggs.csv','w') as csvfile:
+
+    ############### adding 1 & 0 at the end of list ####################
+    for val in divided_row:
+        rows.append(val)
+    rows.append(crt_or_wrong[j])
+    j= j+1
+    # print(rows)
+
+    # print("__________________________________")
+    g.append(rows)
+    
+    
+
+
+
+
+    # c.append(divided_row)
+
+    # #adding 1 & 0 at the end of list
+    # c.append(crt_or_wrong[j])
+    # print(c)
+    # print("__________________________________")
+
+    # g= np.array(c).tolist()
+
+with open('eggs.csv','w') as csvfile:
     
     spamwriter = csv.writer(csvfile, delimiter=',',lineterminator = '\n')
     for li in g:
-        print(li)
-        print("__________________________________")
+        #print(li)
+        #print("__________________________________")
                                 
         spamwriter.writerow(li)
-
-"""with open('flow.csv') as csvfile:
-     spamreader = csv.reader(csvfile, delimiter=',')
-     for row in spamreader:
-         print ','.join(row)
-         print(row)
-
-'''with open('flow.csv') as csvfile:
-   readCSV = csv.reader(csvfile, delimiter=',')
-   for row in readCSV:
-       print(row)
-       row.pop()
-       print(row)
-       
-       a.append(row)
-       print("____________________________________________________")
-       
-       #print(row[1])
-        #print(row[0],row[1],row[2],)'''
-#print(a)
-print("input"+str(a))
-b = map(float, a)
-print("b= "+str(b))"""
-
-
-
-
-

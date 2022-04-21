@@ -1,13 +1,6 @@
-#!/usr/bin/env python2
-# -*- coding: utf-8 -*-
-"""
-Created on Mon May 28 15:09:25 2018
-
-@author: justine
-"""
 
 import network as nw
-#import scikit_learn as sl
+
 
 question= [["what is hepatitis?"],["what are the symptoms of hepatitis?"],["what is acute hepatitis?"],["what causes hepatitis?"],["what are the other causes of hepatitis?"],["what are the different types of hepatitis?"],["does hepatitis a sexually transmitted diseases?"],["how hepatitis c is spread?"]
 ,["hepatitis d is infect by what?"],["is there medication available for hepatitis?"],["is there any specific treatment for hepatitis nash?"],["is there liver transplantation an option to cure hepatitis?"]]
@@ -27,10 +20,3 @@ selected_sentences_list= [["hepatitis is inflammation of the liver tissue.","hep
 for i in range (0, len(question)):
     
     array=nw.question_answer_nurel_network(question[i],selected_sentences_list[i])
-#answer= nw.question_answer_nurel_network(question,selected_sentences_list)
-#print(answer)
-print("array= " +str(array))
-
-#net=sl.learn(array)
-#sl.save_perceptron(net)
-
